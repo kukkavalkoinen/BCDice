@@ -89,16 +89,7 @@ class AddDice
       if consume("+")
         unary()
       elsif consume("-")
-        node = unary()
-
-        case node
-        when Node::Negate
-          node.body
-        when Node::Number
-          node.negate()
-        else
-          AddDice::Node::Negate.new(node)
-        end
+        Node::Negate.new(unary())
       else
         term()
       end
